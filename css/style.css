@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#input{
+    background-color: #fff;
+    display:flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+#play{
+    padding: 0 15px;
+}
+
+body {
+    background-color:#7FFFD4 ;
+}
+
+#griglia {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    margin: 50px auto;
+    cursor: pointer;
+}
+
+.cell {
+    border: solid 2px #000;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clicked.cellcolor {
+    background-color:#22d9f1 ;
+}
+
+.cellcolor {
+    background-color:#7FFFD4 ;
+}
+
+
+
