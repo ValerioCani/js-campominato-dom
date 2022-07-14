@@ -33,7 +33,8 @@ function startgrid(){
     
     const griglia = document.getElementById('griglia');
     griglia.innerHTML="";
-
+    
+    let counter = 0; 
     for (let i = 0; i < (cellBase * cellBase); i++) {
 
         const square = createSquare(i + 1 , cellBase);
@@ -44,10 +45,16 @@ function startgrid(){
                     this.classList.add('boom');
                     document.getElementById('you-lose').classList.add('lose');
                     console.log(i + 1);
-                }else{
+                }else if(!this.classList.contains('bombfree')){
                     this.classList.add('bombfree');
                     console.log(i + 1);
-                }
+                    counter++;
+                    document.getElementById('counter').innerHTML = `Hai trovato ${counter} caselle senza bomba , te ne mancano ${(cellBase * cellBase) - 16 - counter}`;
+                    console.log(counter)
+                    if(counter == (cellBase * cellBase) - 16){
+                        document.getElementById('victory').classList.add('win');
+                    };
+                };
             }
         );
 
