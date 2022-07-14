@@ -37,7 +37,7 @@ function startgrid(){
     let counter = 0; 
     for (let i = 0; i < (cellBase * cellBase); i++) {
 
-        const square = createSquare(i + 1 , cellBase);
+        const square = createSquare(i + 1 , cellBase, randomNumbers);
 
         square.addEventListener('click', 
             function () {
@@ -64,7 +64,7 @@ function startgrid(){
 };
 
 
-function createSquare(numero, cellSide) {
+function createSquare(numero, cellSide, randomNumbers) {
 
     const newCell = document.createElement('div');
     newCell.classList.add('cell', 'cellcolor');
@@ -73,6 +73,13 @@ function createSquare(numero, cellSide) {
     
     const numberSquare = document.createElement('div');
     numberSquare.append(numero);
+
+    //per semplificare la correzione, sennò viene voglia di spararsi a fare numero per numero dalla console
+    //adesso che ci penso poteva venirmi in mente prima di finire... 
+    if(randomNumbers.includes(numero)){
+        numberSquare.style.color = 'red';
+        numberSquare.style.fontSize = '20px';
+    }
 
     newCell.append(numberSquare);
 
