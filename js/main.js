@@ -4,6 +4,8 @@ start.addEventListener('click', startgrid);
 function startgrid(){
 
     document.getElementById('you-lose').classList.remove('lose');
+    document.getElementById('victory').classList.remove('win');
+
 
     const difficulty = parseInt(document.getElementById('difficulty').value);
     console.log(difficulty);
@@ -42,18 +44,26 @@ function startgrid(){
         square.addEventListener('click', 
             function () {
                 if(randomNumbers.includes(i+1)){
-                    this.classList.add('boom');
+
+                    const bombarray = document.getElementsByClassName('bombcolor');
+                    for( let i=0; i<bombarray.length; i++){
+                        bombarray[i].classList.add('boom');
+                    };
                     document.getElementById('you-lose').classList.add('lose');
                     console.log(i + 1);
+
                 }else if(!this.classList.contains('bombfree')){
+
                     this.classList.add('bombfree');
                     console.log(i + 1);
                     counter++;
                     document.getElementById('counter').innerHTML = `Hai trovato ${counter} caselle senza bomba , te ne mancano ${(cellBase * cellBase) - 16 - counter}`;
                     console.log(counter)
+
                     if(counter == (cellBase * cellBase) - 16){
                         document.getElementById('victory').classList.add('win');
                     };
+
                 };
             }
         );
@@ -67,7 +77,6 @@ function startgrid(){
 function createSquare(numero, cellSide, randomNumbers) {
 
     const newCell = document.createElement('div');
-    newCell.classList.add('cell', 'cellcolor');
     newCell.style.height = 'calc(100% / ' + cellSide + ')';
     newCell.style.width = 'calc(100% / ' + cellSide + ')';
     
@@ -77,8 +86,11 @@ function createSquare(numero, cellSide, randomNumbers) {
     //per semplificare la correzione, sennò viene voglia di spararsi a fare numero per numero dalla console
     //adesso che ci penso poteva venirmi in mente prima di finire... 
     if(randomNumbers.includes(numero)){
+        newCell.classList.add('cell', 'bombcolor');
         numberSquare.style.color = 'red';
         numberSquare.style.fontSize = '20px';
+    } else {
+        newCell.classList.add('cell', 'cellcolor');
     }
 
     newCell.append(numberSquare);
