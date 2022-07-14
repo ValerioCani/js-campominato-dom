@@ -3,11 +3,13 @@ start.addEventListener('click', startgrid);
 
 function startgrid(){
 
+    document.getElementById('you-lose').classList.remove('lose');
+
     const difficulty = parseInt(document.getElementById('difficulty').value);
     console.log(difficulty);
-
+    
     let cellBase = '';
-
+    
     if(difficulty == 1){
         cellBase = 10;
     } else if (difficulty == 2){
@@ -15,23 +17,7 @@ function startgrid(){
     } else if (difficulty == 3){
         cellBase = 7;
     };
-
-    const griglia = document.getElementById('griglia');
-    griglia.innerHTML="";
-
-    for (let i = 0; i < (cellBase * cellBase); i++) {
-
-        const square = createSquare(i + 1 , cellBase);
-        square.addEventListener('click', 
-            function () {
-                this.classList.toggle('clicked');
-                console.log(i + 1);
-            }
-        );
-
-        griglia.append(square);
-    };
-
+    
     let randomNumbers = [];
     
     while( randomNumbers.length < 16 ){
@@ -42,7 +28,32 @@ function startgrid(){
             randomNumbers.push(random);
         };
     };
+
     console.log(randomNumbers);
+    
+    const griglia = document.getElementById('griglia');
+    griglia.innerHTML="";
+
+    for (let i = 0; i < (cellBase * cellBase); i++) {
+
+        const square = createSquare(i + 1 , cellBase);
+
+        square.addEventListener('click', 
+            function () {
+                if(randomNumbers.includes(i+1)){
+                    this.classList.add('boom');
+                    document.getElementById('you-lose').classList.add('lose');
+                    console.log(i + 1);
+                }else{
+                    this.classList.add('bombfree');
+                    console.log(i + 1);
+                }
+            }
+        );
+
+        griglia.append(square);
+    };
+
 };
 
 

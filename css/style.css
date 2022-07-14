@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+#container {
+    background-color:#7FFFD4 ;
+    z-index: 1;
+}
+
 #input{
     height: 80px;
     background-color: #fff;
@@ -29,9 +34,10 @@
     margin: 30px 30px 30px 0;
 }
 
-body {
-    background-color:#7FFFD4 ;
+#playground{
+    position: relative;
 }
+
 
 #griglia {
     display: flex;
@@ -40,6 +46,28 @@ body {
     height: 600px;
     margin: 50px auto;
     cursor: pointer;
+    z-index: 5;
+}
+
+#you-lose{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#you-lose h1{
+    font-size: 50px;
+    color: #ff0015;
+}
+
+#you-lose.lose{
+    z-index: 999;
 }
 
 .cell {
@@ -50,10 +78,13 @@ body {
     align-items: center;
 }
 
-.clicked.cellcolor {
+.bombfree.cellcolor {
     background-color:#22d9f1 ;
 }
 
+.boom.cellcolor{
+    background-color:#ff0015 ;
+}
 .cellcolor {
     background-color:#7FFFD4 ;
 }
