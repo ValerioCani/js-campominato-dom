@@ -31,7 +31,19 @@ function startgrid(){
 
         griglia.append(square);
     };
-}
+
+    let randomNumbers = [];
+    
+    while( randomNumbers.length < 16 ){
+
+        let random = Math.floor(Math.random() * (cellBase * cellBase)) + 1;
+
+        if( !randomNumbers.includes(random)){
+            randomNumbers.push(random);
+        };
+    };
+    console.log(randomNumbers);
+};
 
 
 function createSquare(numero, cellSide) {
